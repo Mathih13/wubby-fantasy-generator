@@ -30,7 +30,7 @@ class FrontPage extends Component {
       sentenceObjects: null,
       currentSentence: null,
       loaded: false,
-      mainURL: 'http://localhost:8080',
+      mainURL: 'http://139.59.186.52',
       serverURL: 'http://139.59.186.52:3000'
 
     }
