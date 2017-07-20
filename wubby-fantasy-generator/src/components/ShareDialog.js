@@ -28,7 +28,11 @@ export default class DialogExampleSimple extends React.Component {
 
 
   handleOpen = () => {
-    if (this.state.prevSentence === this.props.currentSentence) {
+    if (!this.props.currentSentence) {
+      return;
+    }
+
+    if (this.state.prevSentence == this.props.currentSentence) {
       this.setState({open: true});
       return;
     }
@@ -36,7 +40,7 @@ export default class DialogExampleSimple extends React.Component {
     var component = this;
     this.setState({open: true});
     // Save dat link
-    fetch('http://localhost:3000/api/saveQuote', {
+    fetch(this.props.serverURL + '/api/saveQuote', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -62,7 +66,7 @@ export default class DialogExampleSimple extends React.Component {
   render() {
     const actions = [
       <FlatButton
-        label="Ok"
+        label="Close"
         primary={true}
         onClick={this.handleClose}
       />,

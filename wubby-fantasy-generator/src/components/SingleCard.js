@@ -19,7 +19,8 @@ class SingleCard extends Component {
     this.state = {
       mainExpanded: true,
       generated: true,
-      quote: ''
+      quote: null,
+      serverURL: 'http://139.59.186.52:3000'
     }
 
   }
@@ -28,7 +29,7 @@ class SingleCard extends Component {
   componentWillMount() {
     var component = this;
     if (this.props.match.params.id) { // We have an id, let's get it from server
-      fetch('http://localhost:3000/api/getQuote', {
+      fetch(this.state.serverURL + '/api/getQuote', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -50,20 +51,19 @@ class SingleCard extends Component {
   render() {
     return (
       <div className="App">
-      <meta name="twitter:card" content="summary" />
-      <meta name="twitter:site" content="@nytimesbits" />
-      <meta name="twitter:creator" content="@nickbilton" />
-      <meta property="og:url" content="http://bits.blogs.nytimes.com/2011/12/08/a-twitter-for-my-sister/" />
-      <meta property="og:title" content="A Twitter for My Sister" />
-      <meta property="og:description" content="In the early days, Twitter grew so quickly that it was almost impossible to add new features because engineers spent their time trying to keep the rocket ship from stalling." />
-      <meta property="og:image" content="http://graphics8.nytimes.com/images/2011/12/08/technology/bits-newtwitter/bits-newtwitter-tmagArticle.jpg" />
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
 
         </div>
+          {this.state.quote != null &&
+            <TextCard expanded={this.state.mainExpanded} cardtext={'"' + this.state.quote + '"'}/>
+          }
 
-          <TextCard expanded={this.state.mainExpanded} cardtext={'"' + this.state.quote + '"'}/>
+          {this.state.quote == null &&
+            <p>Having some trouble finding that quote...</p>
+          }
+
 
 
 

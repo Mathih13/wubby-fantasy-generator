@@ -4,7 +4,7 @@ import '../App.css';
 import GridList from 'material-ui/GridList';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextCard from './textCard';
-import ShareDialog from './ShareDialog';
+import BottomNav from './BottomNav';
 
 
 
@@ -30,7 +30,8 @@ class FrontPage extends Component {
       sentenceObjects: null,
       currentSentence: null,
       loaded: false,
-      mainURL: 'http://localhost:8080'
+      mainURL: 'http://localhost:8080',
+      serverURL: 'http://139.59.186.52:3000'
 
     }
 
@@ -42,7 +43,7 @@ class FrontPage extends Component {
   fetchAll() {
     var component = this;
     // Fetch WubbyName
-    fetch('http://localhost:3000/api/wubbyname', {
+    fetch(this.state.serverURL + '/api/wubbyname', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -54,7 +55,7 @@ class FrontPage extends Component {
     });
 
     // Fetch Actions
-    fetch('http://localhost:3000/api/sentenceaction', {
+    fetch(this.state.serverURL + '/api/sentenceaction', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -66,7 +67,7 @@ class FrontPage extends Component {
     });
 
     // Fetch Objects
-    fetch('http://localhost:3000/api/sentenceobject', {
+    fetch(this.state.serverURL + '/api/sentenceobject', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -133,14 +134,9 @@ class FrontPage extends Component {
           <TextCard expanded={this.state.mainExpanded} cardtext={this.state.currentSentence}/>
         }
 
-        {this.state.currentSentence &&
-
-          <ShareDialog currentSentence={this.state.currentSentence} mainURL={this.state.mainURL}/>
-        }
 
 
-        <GridList>
-        </GridList>
+        <BottomNav currentSentence={this.state.currentSentence} mainURL={this.state.mainURL} serverURL={this.state.serverURL}/>
 
 
 
