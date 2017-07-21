@@ -5,6 +5,7 @@ import GridList from 'material-ui/GridList';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextCard from './textCard';
 import MetaTags from 'react-meta-tags';
+import {Helmet} from "react-helmet";
 
 
 import {
