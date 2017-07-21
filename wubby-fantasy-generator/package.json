@@ -6,6 +6,7 @@
     "material-ui": "^0.18.6",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-helmet": "^5.1.3",
     "react-meta-tags": "^0.1.3",
     "react-page-context": "0.0.5",
     "react-router": "^4.1.2",
